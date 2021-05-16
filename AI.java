@@ -16,6 +16,7 @@ public class AI {
             }
         }
     }
+    
     public String[][] medium (String[][] board, String sign){
         while(true){
             if(oneMoveRow(board, sign, sign) 
@@ -34,6 +35,7 @@ public class AI {
         }
         return board;
     }
+    
 public String[][] hard (String[][] board, String sign ){
     String counterSign = sign.equals("X")?"O":"X"; //set the opposite sign
     int[] bestMove = new int[]{-1, -1};//sets array for optimal move
@@ -96,7 +98,7 @@ public int miniMax(String[][] board, int depth, boolean isMaximizing, String sig
                 }
             }
             
-            return lowestVal;
+         return lowestVal;
     }
 }
 
@@ -167,8 +169,7 @@ public int miniMax(String[][] board, int depth, boolean isMaximizing, String sig
       return false;
     }
 
-    public boolean oneMoveColumn(String[][] board, String sign, String assignment)
-    {
+    public boolean oneMoveColumn(String[][] board, String sign, String assignment){
         for(int col = 0; col < 3; col++){
            /*declare and initialize / reset between columns, sign and assignment are different*/
             int first = -1;
