@@ -153,7 +153,8 @@ public int miniMax(String[][] board, int depth, boolean isMaximizing, String sig
     public boolean oneMoveRow(String[][] board, String sign, String assignment){
         //method for MEDIUM move
           for(int row = 0; row < 3; row++){ 
-            /*declare and initialize / reset between rows, sign and assignemtn are the same*/
+            /*declare and initialize / reset between rows, sign and assignemtn differs 
+            depending on checking for winning in one move / prevent loss in one move*/
             int first = -1;
             int second = -1;
             int counter = 0;
@@ -178,7 +179,8 @@ public int miniMax(String[][] board, int depth, boolean isMaximizing, String sig
     public boolean oneMoveColumn(String[][] board, String sign, String assignment){
         //method for MEDIUM move
         for(int col = 0; col < 3; col++){
-           /*declare and initialize / reset between columns, sign and assignment are different*/
+           /*declare and initialize / reset between columns, sign and assignemtn differs 
+            depending on checking for winning in one move / prevent loss in one move*/
             int first = -1;
             int second = -1;
             int counter = 0;
@@ -201,7 +203,8 @@ public int miniMax(String[][] board, int depth, boolean isMaximizing, String sig
     }
 
   public boolean oneMoveDiagonal(String[][] board, String sign, String assignment){
-      //method for MEDIUM move
+        /*method for MEDIUM move, sign and assignemtn differs 
+        depending on checking for winning in one move / prevent loss in one move*/
         int first = -1;
         int second = -1;
         int counter = 0;
