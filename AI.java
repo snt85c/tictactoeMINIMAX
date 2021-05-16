@@ -5,7 +5,7 @@ public class AI {
     Random rand = new Random();
 
     public String[][] easy(String[][] board, String sign){
-        //method for EASY move
+        //method for EASY move, just goes random on empty cells
         while(true){
             int first = rand.nextInt(3);
             int second = rand.nextInt(3);
@@ -19,7 +19,8 @@ public class AI {
     }
     
     public String[][] medium (String[][] board, String sign){
-        //method for MEDIUM move
+        /*method for MEDIUM move, checks if there are two signs together, 
+        wins or prevents the loss, otherwise goes random*/
         while(true){
             if(oneMoveRow(board, sign, sign) 
             || oneMoveRow(board, sign.equals("X")?"O":"X", sign )){
@@ -36,6 +37,100 @@ public class AI {
             }
         }
         return board;
+    }
+    
+    public boolean oneMoveRow(String[][] board, String sign, String assignment){
+        //method for MEDIUM move
+          for(int row = 0; row < 3; row++){ 
+            /*declare and initialize / reset between rows, sign and assignemtn differs 
+            depending on checking for winning in one move / prevent loss in one move*/
+            int first = -1;
+            int second = -1;
+            int counter = 0;
+            for(int col = 0; col < 3; col++){
+                if(board[row][col].equals(sign)){
+                    counter++;
+                }
+                if(board[row][col].equals(" ")){
+                    first = row;
+                    second = col;
+                }
+                if(counter == 2 && first != -1){
+                    board[first][second] = assignment;
+                    Main.showBoard();
+                    return true;
+                }
+            }
+        }
+      return false;
+    }
+
+    public boolean oneMoveColumn(String[][] board, String sign, String assignment){
+        //method for MEDIUM move
+        for(int col = 0; col < 3; col++){
+           /*declare and initialize / reset between columns, sign and assignemtn differs 
+            depending on checking for winning in one move / prevent loss in one move*/
+            int first = -1;
+            int second = -1;
+            int counter = 0;
+            for(int row = 0; row < 3; row++){
+                if(board[row][col].equals(sign)){
+                    counter++;
+                }
+                if(board[row][col].equals(" ")){
+                    first = row;
+                    second = col;
+                }
+                if(counter == 2 && first != -1){
+                    board[first][second] = assignment;
+                    Main.showBoard();
+                    return true;
+                }
+            }
+        }
+      return false;
+    }
+
+  public boolean oneMoveDiagonal(String[][] board, String sign, String assignment){
+        /*method for MEDIUM move, sign and assignemtn differs 
+        depending on checking for winning in one move / prevent loss in one move*/
+        int first = -1;
+        int second = -1;
+        int counter = 0;
+        for(int i = 0; i < 3; i++){
+            if(board[i][i].equals(sign)){
+                counter++;
+            }
+            if(board[i][i].equals(" ")){
+                first = i;
+                second = i;
+            }
+            if(counter == 2 && first != -1){
+                board[first][second] = assignment;
+                Main.showBoard();
+                return true;
+            }
+        }
+        first = -1;
+        second = -1;
+        counter = 0;
+        int  d = 2;
+        for(int i = 0; i < 3; i++){
+            if(board[i][d].equals(sign)){
+                counter++;
+            }
+            if(board[i][d].equals(" ")){
+                first = i;
+                second = d;
+            }
+            if(counter == 2 && first != -1){
+                board[first][second] = assignment;
+                Main.showBoard();
+                return true;
+            }
+            d--;
+        }
+        return false;
     }
     
 public String[][] hard (String[][] board, String sign ){
@@ -149,98 +244,5 @@ public int miniMax(String[][] board, int depth, boolean isMaximizing, String sig
         }
         return 0;
     }
-
-    public boolean oneMoveRow(String[][] board, String sign, String assignment){
-        //method for MEDIUM move
-          for(int row = 0; row < 3; row++){ 
-            /*declare and initialize / reset between rows, sign and assignemtn differs 
-            depending on checking for winning in one move / prevent loss in one move*/
-            int first = -1;
-            int second = -1;
-            int counter = 0;
-            for(int col = 0; col < 3; col++){
-                if(board[row][col].equals(sign)){
-                    counter++;
-                }
-                if(board[row][col].equals(" ")){
-                    first = row;
-                    second = col;
-                }
-                if(counter == 2 && first != -1){
-                    board[first][second] = assignment;
-                    Main.showBoard();
-                    return true;
-                }
-            }
-        }
-      return false;
-    }
-
-    public boolean oneMoveColumn(String[][] board, String sign, String assignment){
-        //method for MEDIUM move
-        for(int col = 0; col < 3; col++){
-           /*declare and initialize / reset between columns, sign and assignemtn differs 
-            depending on checking for winning in one move / prevent loss in one move*/
-            int first = -1;
-            int second = -1;
-            int counter = 0;
-            for(int row = 0; row < 3; row++){
-                if(board[row][col].equals(sign)){
-                    counter++;
-                }
-                if(board[row][col].equals(" ")){
-                    first = row;
-                    second = col;
-                }
-                if(counter == 2 && first != -1){
-                    board[first][second] = assignment;
-                    Main.showBoard();
-                    return true;
-                }
-            }
-        }
-      return false;
-    }
-
-  public boolean oneMoveDiagonal(String[][] board, String sign, String assignment){
-        /*method for MEDIUM move, sign and assignemtn differs 
-        depending on checking for winning in one move / prevent loss in one move*/
-        int first = -1;
-        int second = -1;
-        int counter = 0;
-        for(int i = 0; i < 3; i++){
-            if(board[i][i].equals(sign)){
-                counter++;
-            }
-            if(board[i][i].equals(" ")){
-                first = i;
-                second = i;
-            }
-            if(counter == 2 && first != -1){
-                board[first][second] = assignment;
-                Main.showBoard();
-                return true;
-            }
-        }
-        first = -1;
-        second = -1;
-        counter = 0;
-        int  d = 2;
-        for(int i = 0; i < 3; i++){
-            if(board[i][d].equals(sign)){
-                counter++;
-            }
-            if(board[i][d].equals(" ")){
-                first = i;
-                second = d;
-            }
-            if(counter == 2 && first != -1){
-                board[first][second] = assignment;
-                Main.showBoard();
-                return true;
-            }
-            d--;
-        }
-        return false;
-    }
+    //end
 }
