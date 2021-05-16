@@ -134,7 +134,7 @@ public class AI {
     }
     
 public String[][] hard (String[][] board, String sign ){
-    //method for HARD move
+    //method for HARD move, implemets MINIMAX, either wins or draws
     String counterSign = sign.equals("X")?"O":"X"; //set the opposite sign
     int[] bestMove = new int[]{-1, -1};//sets array for optimal move
     int bestValue = Integer.MIN_VALUE;//set initial value of bestValue
