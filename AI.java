@@ -5,6 +5,7 @@ public class AI {
     Random rand = new Random();
 
     public String[][] easy(String[][] board, String sign){
+        //method for EASY move
         while(true){
             int first = rand.nextInt(3);
             int second = rand.nextInt(3);
@@ -18,6 +19,7 @@ public class AI {
     }
     
     public String[][] medium (String[][] board, String sign){
+        //method for MEDIUM move
         while(true){
             if(oneMoveRow(board, sign, sign) 
             || oneMoveRow(board, sign.equals("X")?"O":"X", sign )){
@@ -37,6 +39,7 @@ public class AI {
     }
     
 public String[][] hard (String[][] board, String sign ){
+    //method for HARD move
     String counterSign = sign.equals("X")?"O":"X"; //set the opposite sign
     int[] bestMove = new int[]{-1, -1};//sets array for optimal move
     int bestValue = Integer.MIN_VALUE;//set initial value of bestValue
@@ -60,6 +63,7 @@ public String[][] hard (String[][] board, String sign ){
 }
 
 public int miniMax(String[][] board, int depth, boolean isMaximizing, String sign, String counterSign){
+    //MINIMAX for HARD move
        int boardVal = checkWinCondition4MiniMax(board, depth, sign, counterSign);
        /*after assigning a sign to an empty slot, we check if there is a win(+10,-10, 0)*/
         if (Math.abs(boardVal) == 10 || Math.abs(boardVal) == -10) {//base case, if found, return.
@@ -104,6 +108,7 @@ public int miniMax(String[][] board, int depth, boolean isMaximizing, String sig
 
 
     public int checkWinCondition4MiniMax(String[][] board,int depth, String sign, String counterSign){
+        //method for MINIMAX in HARD move
       //i had to unwrap it from the methods in Main, as there was a bug somewhere that switched the sign 
        for(int row = 0; row < 3; row++){//check rows for winning with one sign
             if(board[row][0].equals(sign) && board[row][1].equals(sign) && board[row][2].equals(sign)){
@@ -146,6 +151,7 @@ public int miniMax(String[][] board, int depth, boolean isMaximizing, String sig
     }
 
     public boolean oneMoveRow(String[][] board, String sign, String assignment){
+        //method for MEDIUM move
           for(int row = 0; row < 3; row++){ 
             /*declare and initialize / reset between rows, sign and assignemtn are the same*/
             int first = -1;
@@ -170,6 +176,7 @@ public int miniMax(String[][] board, int depth, boolean isMaximizing, String sig
     }
 
     public boolean oneMoveColumn(String[][] board, String sign, String assignment){
+        //method for MEDIUM move
         for(int col = 0; col < 3; col++){
            /*declare and initialize / reset between columns, sign and assignment are different*/
             int first = -1;
@@ -194,6 +201,7 @@ public int miniMax(String[][] board, int depth, boolean isMaximizing, String sig
     }
 
   public boolean oneMoveDiagonal(String[][] board, String sign, String assignment){
+      //method for MEDIUM move
         int first = -1;
         int second = -1;
         int counter = 0;
