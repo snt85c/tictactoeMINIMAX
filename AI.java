@@ -142,9 +142,9 @@ public String[][] hard (String[][] board, String sign ){
             for (int col = 0; col < 3; col++) {
                 if (board[row][col] == " ") {//when a cell is found empty
                     board[row][col] = sign;//assign the current sign
-                    int moveValue = miniMax(board, 0, false, sign, counterSign);//return minimax for this value
-                    board[row][col] = " ";//remove the sign we assigned before
-                    if (moveValue > bestValue) {
+                    int moveValue = miniMax(board, 0, false, sign, counterSign);//return minimax for this board configuration
+                    board[row][col] = " ";//remove the sign we assigned before, resets the board to what it was before minimax
+                    if (moveValue > bestValue) {//if minimax returned a better value, change the move value and the bestValue with this one
                         bestMove[0] = row;
                         bestMove[1] = col;
                         bestValue = moveValue;
